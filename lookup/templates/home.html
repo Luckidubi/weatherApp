@@ -1,6 +1,41 @@
 {% extends 'base.html'%}
 
 {% block content %}
- <h1>Hello world</h1>
+    <h1>U.S Air Quality By Zipcode</h1>
+   
+    <br>
+
+{% if api %}
+    {% if api == "Error loading content..."  %}
+        There was an error loading content, try again
+    {% else %}
+
+            <div class="card text-center {{category_color}}">
+                <div class="card-header display-4">
+                    {{api.0.Category.Name}}
+                </div>
+                <div class="card-body">
+                <h4 class="card-title">{{api.0.ReportingArea}}</h5>
+                    <h5 class="card-title">Current Air Quality: {{api.0.AQI}}</h5>
+                    <p class="card-text">
+                    {{ category_description }}
+                    {{ api.0.Discussion}}</p>
+                    <a href="#" class="btn btn-dark">Go somewhere</a>
+                </div>
+                <div class="card-footer text-muted">
+                <p> {{api.0.DateForecast}}</p>
+                </div>
+            </div>
+            <br>
+
+            <br>
+            <br>
+            <br><br>
+
+
+    {% endif %}
+
+
+ {% endif %}
 
 {% endblock %}
